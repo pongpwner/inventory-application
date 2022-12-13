@@ -6,11 +6,12 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var addItemRouter = require("./routes/addItem");
 
 var app = express();
 const mongoose = require("mongoose");
 const mongoURI =
-  "mongodb+srv://pong:<password>@cluster0.q0ioy8c.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://pong:pong@cluster0.q0ioy8c.mongodb.net/?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || mongoURI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/addItem", addItemRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

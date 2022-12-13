@@ -1,0 +1,13 @@
+<ul class="item-list">
+  <%if(item_list){ %>
+     <% item_list.forEach(item=>{ %>
+  <li>
+    <a href=<%= item.url %> >
+    <span><%= item.name %></span>
+    <span><%= item.description %></span>
+  </a>
+  </li>
+
+  <%  }) %>
+  <% }%>
+</ul>
