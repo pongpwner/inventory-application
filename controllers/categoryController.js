@@ -30,3 +30,7 @@ exports.category_list = function (req, res, next) {
       res.render("categoryList", { categories: listCategories });
     });
 };
+
+exports.delete_category_get = function (req, res, next) {
+  res.render("categoryDelete");
+};

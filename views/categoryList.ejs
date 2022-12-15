@@ -10,9 +10,11 @@
     <a href="/"> go home</a>
     <ul>
     <% categories.forEach(category=>{ %>
-        <li>
+        <li>    
+            <a href="<%=category.url%>/delete">
             <span><%=category.name%></span>
             <span><%=category.description%></span>
+            </a>
         </li>
 
 

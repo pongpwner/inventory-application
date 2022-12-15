@@ -8,5 +8,11 @@
 </head>
 <body>
     <div>Are you sure you want to delete this category</div>
+    <form action="/category/:id/delete" method="POST">
+        <button type="submit">yes</button>
+        <a href="/category">
+        <button type="button">no</button>
+        </a>
+    </form>
 </body>
 </html>
