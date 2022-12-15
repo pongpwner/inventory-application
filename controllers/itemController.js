@@ -8,7 +8,7 @@ exports.item_list = function (req, res, next) {
       if (err) {
         return next(err);
       }
-      console.log(list_items);
+
       res.render("index", { title: "Item List", item_list: list_items });
     });
 };
