@@ -11,7 +11,11 @@
    
     <span>Name: <%=item.name%></span>
     <span>Description: <%=item.description%></span>
+    <%if(item.category){%>
     <span>Category: <%=item.category.name%></span>
+    <%} else{%>
+    <span>Category: none</span>
+    <%}%>
     <span>Price: $<%=item.price%></span>
     <span>Stock: <%=item.stock%></span>
     <a href="<%=item.url%>/delete">delete item</a>

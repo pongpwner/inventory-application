@@ -32,5 +32,19 @@ exports.category_list = function (req, res, next) {
 };
 
 exports.delete_category_get = function (req, res, next) {
-  res.render("categoryDelete");
+  Category.findById(req.params.id).exec((err, results) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("categoryDelete", { category: results });
+  });
+};
+
+exports.delete_category_post = function (req, res, next) {
+  Category.deleteOne({ _id: req.params.id }, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/category");
+  });
 };
