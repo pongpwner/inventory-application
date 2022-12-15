@@ -42,3 +42,34 @@ exports.add_item = function (req, res, next) {
     res.redirect("/");
   });
 };
+
+exports.get_item = function (req, res, next) {
+  Item.findById(req.params.id)
+    .populate("category")
+    .exec(function (err, result) {
+      if (err) {
+        return next(err);
+      }
+      console.log(result.category);
+      res.render("item", { item: result, deleteItem: "deleteItem();" });
+    });
+};
+exports.delete_item_post = function (req, res, next) {
+  Item.deleteOne({ _id: req.params.id }, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+exports.delete_item_get = function (req, res, next) {
+  Item.findById(req.params.id).exec((err, result) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("itemDelete", { item: result });
+  });
+};
+
+//helopers
