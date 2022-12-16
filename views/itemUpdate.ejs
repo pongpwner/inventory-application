@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 >update Item</h1>
+    <form action="<%=item.url%>/update" method="POST">
+        <label for="item-name">Name:</label>
+        <input type="text" id="item-name" name="itemName">
+        <label for="item-description">Description:</label>
+        <input type="text" id="item-description" name="itemDescription">
+        <label for="item-category">Category:</label>
+        <select id="item-category" name="itemCategory">
+            <% if(categories){%>
+                    <% categories.forEach(category=>{ %>
+                        <option value=<%= category._id %> ><%= category.name %>  </option>
+                <%})%>
+            <% } %>
+        </select>
+        <label for="item-price">Price:</label>
+        <input type="text" id="item-price" name="itemPrice">
+        <label for="item-stock">Stock</label>
+        <input type="text" id="'item-stock" name="itemStock">
+        
+        <button type="subit">Update Item</button>
+    </form>
+</body>
+</html>

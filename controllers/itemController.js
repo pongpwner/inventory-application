@@ -72,4 +72,42 @@ exports.delete_item_get = function (req, res, next) {
   });
 };
 
-//helopers
+exports.update_item_post = function (req, res, next) {
+  let itemDetails = {
+    name: req.body.itemName,
+    description: req.body.itemDescription,
+    category: req.body.itemCategory,
+    price: req.body.itemPrice,
+    stock: req.body.itemStock,
+  };
+  Item.findOneAndUpdate({ _id: req.params.id }, itemDetails).exec(
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(`/item/${req.params.id}`);
+    }
+  );
+};
+
+exports.update_item_get = function (req, res, next) {
+  async.parallel(
+    {
+      item: function (callback) {
+        Item.findById(req.params.id).exec(callback);
+      },
+      categories: function (callback) {
+        Category.find({}).sort({ name: 1 }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("itemUpdate", {
+        categories: results.categories,
+        item: results.item,
+      });
+    }
+  );
+};
