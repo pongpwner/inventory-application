@@ -8,6 +8,16 @@
 </head>
 <body>
     <div>Are you sure you want to delete this category</div>
+
+    <% if(items){  %>
+        <span>These items have <%=category.name%> as a category</span>
+        <ul>
+            <%items.forEach(item=>{%>
+                <li><%=item.name%></li>
+            <%})%>
+        </ul>
+
+    <% }%>
     <form action="<%=category.url%>/delete" method="POST">
         <button type="submit">yes</button>
         <a href="/category">
